@@ -47,7 +47,7 @@ imageInput.addEventListener('change', function(event){
         //     return;
         // }
 
-        const apiKey = 'R3vWvr7CBqFFqHRtm1qQ2UNy';
+        const apiKey = 'YOUR_REMOVE_BG_API_KEY';        // CHANGED: Replace with your actual API key
         const formData = new FormData();
         formData.append('image_file', file);
         formData.append('size', 'auto');
