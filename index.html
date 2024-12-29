@@ -10,16 +10,21 @@
     
     <h1>AI Photo Editor</h1>
     
-            <br><br>
-            <p>Upload Image : <input type = "file" id = "imageInput" accept = "image/*" ></p>
-            <br><br>
-            <img id="imagePreview" alt="No Image" style="max-width: 300px; display: none;" >
+        <br><br>
+        <p>Upload Image : <input type = "file" id = "imageInput" accept = "image/*" ></p>
+        <br><br>
+        <img id="imagePreview" alt="No Image" style="max-width: 300px; display: none;" >
 
-            <div class="slider-container">
-                <label for="brightness-slider">Brightness:</label>
-                <input type="range" id="brightness-slider" min="0" max="200" value="100">
-                <span id="brightness-value">100%</span>
-            </div>
+        <div class="slider-container">
+            <label for="brightness-slider">Brightness:</label>
+            <input type="range" id="brightness-slider" min="0" max="200" value="100">
+            <span id="brightness-value">100%</span>
+        </div>
+
+        <br><br><br>
+
+        <button id="remove-bg-btn">Remove Background</button>
+
 
     <script src = "script.js"></script>
 </body>
