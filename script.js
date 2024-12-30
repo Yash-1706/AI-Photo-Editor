@@ -23,11 +23,15 @@ imageInput.addEventListener('change', function(event){
         imagePreview.style.display = 'none';
     }
 
+})
+
     //Brightness Slider
 
     const brightnessSlider = document.getElementById('brightness-slider')
     const brightnessValue = document.getElementById('brightness-value')
     const uploadedImage = document.getElementById('imagePreview')
+
+    let brightness = 100;
 
     brightnessSlider.addEventListener('input', function(event){
         const brightness = event.target.value;
@@ -42,9 +46,8 @@ imageInput.addEventListener('change', function(event){
     const imageForSaturation = document.getElementById('imagePreview') 
 
     let saturation = 100;
-    let brightness = 100;
 
-    function updateImageFilters(){
+    function updateImageFilter(){
         imageForSaturation.style.filter = `brightness(${brightness}%) saturate(${saturation}%)`
     }
 
@@ -52,7 +55,7 @@ imageInput.addEventListener('change', function(event){
     if(brightnessControl){
         brightnessControl.addEventListener('input', function(event){
             brightness = event.target.value;
-            updateImageFilters()
+            updateImageFilter()
         })
     }
 
@@ -60,8 +63,26 @@ imageInput.addEventListener('change', function(event){
     saturationSlider.addEventListener('input', function(event) {
         saturation = event.target.value;
         saturationValue.textContent = `${saturation}%`;
-        updateImageFilters()
+        updateImageFilter()
     });
+
+    //Contrast Slider
+
+    const contrastSlider = document.getElementById('contrast-slider')
+    const contrastValue = document.getElementById('contrast-value')
+    const imageForContrast = document.getElementById('imagePreview')
+
+    let contrast = 100
+    
+    function updateImageFilter() {
+        uploadedImage.style.filter = `brightness(${brightness}%) saturate(${saturation}%) contrast(${contrast}%)`;
+    }
+
+    contrastSlider.addEventListener('input', function(event){
+        contrast = event.target.value
+        contrastValue.textContent = `${contrast}%`
+        updateImageFilter()
+    })
 
 
 
@@ -110,5 +131,5 @@ imageInput.addEventListener('change', function(event){
 
     })
     
-})
+    
 
