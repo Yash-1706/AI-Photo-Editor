@@ -24,12 +24,13 @@ imageInput.addEventListener('change', function(event){
     }
 
 })
+    // Get the HTML element with the id 'imagePreview' and assign it to the variable 'uploadedImage'
+    const uploadedImage = document.getElementById('imagePreview')
 
     //Brightness Slider
 
     const brightnessSlider = document.getElementById('brightness-slider')
     const brightnessValue = document.getElementById('brightness-value')
-    const uploadedImage = document.getElementById('imagePreview')
 
     let brightness = 100;
 
@@ -84,14 +85,14 @@ imageInput.addEventListener('change', function(event){
         updateImageFilter()
     })
 
-
-
     //Remove Background button
 
     const removeBgBtn = document.getElementById('remove-bg-btn')
 
     removeBgBtn.addEventListener('click', function(){
         const file = imageInput.files[0]
+
+
 
         if(!file){
             alert('Please upload an image first!');
@@ -130,6 +131,13 @@ imageInput.addEventListener('change', function(event){
         xhr.send(formData);
 
     })
-    
-    
 
+    // Grayscale Button
+
+    const grayscaleBtn = document.getElementById('grayscale-btn')
+
+    grayscaleBtn.addEventListener('click', function(){
+        uploadedImage.style.filter = 'grayscale(100%)'
+    })
+
+    
