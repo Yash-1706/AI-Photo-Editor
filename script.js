@@ -140,10 +140,14 @@ imageInput.addEventListener('change', function(event){
         uploadedImage.style.filter = 'grayscale(100%)'
     })
 
-    // Vintage Button
+    // Sepia Button
 
-    const vintageBtn = document.getElementById('vintage-btn')
+    const sepiaBtn = document.getElementById('sepia-btn')
 
-    vintageBtn.addEventListener('click', function(){
-        uploadedImage.style.filter = 'sepia(60%) contrast(90%) brightness(1.1)'
+    sepiaBtn.addEventListener('click', function(){
+        uploadedImage.style.filter = 'sepia(100%)'
     })
+
+    
+
+    
