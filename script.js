@@ -92,13 +92,6 @@ imageInput.addEventListener('change', function(event){
     removeBgBtn.addEventListener('click', function(){
         const file = imageInput.files[0]
 
-
-
-        if(!file){
-            alert('Please upload an image first!');
-            return;
-        }
-
         const apiKey = 'YOUR_REMOVE_BG_API_KEY';        // CHANGED: Replace with your actual API key
         const formData = new FormData();
         formData.append('image_file', file);
@@ -132,22 +125,25 @@ imageInput.addEventListener('change', function(event){
 
     })
 
-    // Grayscale Button
-
+    //Grayscale Button
     const grayscaleBtn = document.getElementById('grayscale-btn')
 
     grayscaleBtn.addEventListener('click', function(){
         uploadedImage.style.filter = 'grayscale(100%)'
     })
 
-    // Sepia Button
-
+    //Sepia Button
     const sepiaBtn = document.getElementById('sepia-btn')
 
     sepiaBtn.addEventListener('click', function(){
         uploadedImage.style.filter = 'sepia(100%)'
     })
 
-    
+    //Reset Button
+    const resetBtn = document.getElementById('reset-btn')
+
+    resetBtn.addEventListener('click', function(){
+        uploadedImage.style.filter = 'none'
+    })
 
     
