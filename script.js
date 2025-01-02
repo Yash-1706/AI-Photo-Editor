@@ -13,8 +13,12 @@ imageInput.addEventListener('change', function(event){
         const reader = new FileReader();
 
         reader.onload = function(e){
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block';
+            uploadedImage.onload = function(){
+                console.log('Image loaded')
+                console.log('Image dimensions:', uploadedImage.naturalWidth, uploadedImage.naturalHeight)
+            }
+            uploadedImage.src = e.target.result;
+            uploadedImage.style.display = 'block';
         }
 
         reader.readAsDataURL(file)
@@ -24,6 +28,9 @@ imageInput.addEventListener('change', function(event){
     }
 
 })
+
+
+
     // Get the HTML element with the id 'imagePreview' and assign it to the variable 'uploadedImage'
     const uploadedImage = document.getElementById('imagePreview')
 
@@ -146,4 +153,51 @@ imageInput.addEventListener('change', function(event){
         uploadedImage.style.filter = 'none'
     })
 
-    
+    //Save Button
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('2d')
+
+    function drawImageToCanvasWithFilters(){
+
+        if(!uploadedImage.src || uploadedImage.naturalWidth === 0 || uploadedImage.naturalHeight === 0){
+            console.error("Image is not loaded or has invalid dimensions")
+            alert("Upload a valid image")
+            return
+        }
+
+            console.log("Drawing image to canvas ...")
+            canvas.width = uploadedImage.naturalWidth
+            canvas.height = uploadedImage.naturalheight
+
+            const filters = `brightness(${brightness}%) saturate(${saturation}%) contrast(${contrast}%)`
+            context.filter = filters
+
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height)
+        
+            console.log("Image drawn successfully")
+    }
+
+    const saveBtn = document.getElementById('save-btn')
+
+    saveBtn.addEventListener('click', function(){
+
+        drawImageToCanvasWithFilters()
+
+        const imageDataURL = canvas.toDataURL('image/png')
+        console.log("Canvas data URL:", imageDataURL)
+
+        if(imageDataURL === "data:,"){
+            console.error("Canvas is empty. Ensure the image is drawn before saving")
+            alert("Failed to save. please try again")
+            return
+        }
+        
+        const link = document.createElement('a')
+        link.href = imageDataURL
+        link.download = 'edited-image.png'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+
+    })
