@@ -10,14 +10,13 @@
     
     <h1>AI Photo Editor</h1>
     
-        <br><br>
-        <p>Upload Image : <input type = "file" id = "imageInput" accept = "image/*" ></p>
-        <br>
-        <img id="imagePreview" src="image.jpg" alt="No Image" style="max-width: 300px; display: none;" >
+    <div id="editor-container">
+            <p>Upload Image : <input type = "file" id = "imageInput" accept = "image/*" ></p>
+            <div class="image-container">
+                <img id="imagePreview" src="" alt="">
+            </div>
 
-        <canvas id="canvas" style="display: none" ></canvas>
-
-        <br>
+        <canvas id="canvas"></canvas>
 
         <div class="slider-container">
             <label for="brightness-slider">Brightness</label>
@@ -25,15 +24,11 @@
             <span id="brightness-value">100%</span>
         </div>
 
-        <br>
-
         <div class="slider-container">
             <label for="saturation-slider">Saturation</label>
             <input type="range" id="saturation-slider" min="0" max="200" value="100">
             <span id="saturation-value">100%</span>
         </div>
-
-        <br>
 
         <div class="slider-container">
             <label for="contrast-slider">Contrast</label>
@@ -41,15 +36,17 @@
             <span id="contrast-value">100%</span>
         </div>
 
-        <br><br>
+        <div class="button-container">
+            <button id="remove-bg-btn">Remove Background</button>
+            <button id="grayscale-btn">Grayscale</button>
+            <button id="sepia-btn">Sepia</button>
+            <button id="reset-btn">Reset</button>
+            <button id="save-btn">Save</button>
+        </div>
 
-        <button id="remove-bg-btn" >Remove Background</button>
-        <button id="grayscale-btn">Grayscale</button>
-        <button id="sepia-btn">Sepia</button>
-        <button id="reset-btn">Reset</button>
-        <button id="save-btn">Save</button>
+    </div>
         
-
+        
     <script src = "script.js"></script>
 </body>
 </html>
