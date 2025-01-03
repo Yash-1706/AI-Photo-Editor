@@ -30,7 +30,6 @@ imageInput.addEventListener('change', function(event){
 })
 
 
-
     // Get the HTML element with the id 'imagePreview' and assign it to the variable 'uploadedImage'
     const uploadedImage = document.getElementById('imagePreview')
 
@@ -66,7 +65,6 @@ imageInput.addEventListener('change', function(event){
             updateImageFilter()
         })
     }
-
 
     saturationSlider.addEventListener('input', function(event) {
         saturation = event.target.value;
@@ -151,7 +149,25 @@ imageInput.addEventListener('change', function(event){
 
     resetBtn.addEventListener('click', function(){
         uploadedImage.style.filter = 'none'
+
+        // Reset slider's after clicking reset button
+        //Brightness
+        brightness = 100
+        brightnessSlider.value = 100
+        uploadedImage.style.filter = `brightness(${brightness}%)`
+        brightnessValue.textContent = '100%'
+
+        //Saturation
+        saturation = 100
+        saturationSlider.value = 100
+        updateImageFilter()
+
+        //Contrast
+        contrast = 100
+        contrastSlider.value = 100
+        updateImageFilter()
     })
+
 
     //Save Button
     const canvas = document.getElementById('canvas')
@@ -167,7 +183,7 @@ imageInput.addEventListener('change', function(event){
 
             console.log("Drawing image to canvas ...")
             canvas.width = uploadedImage.naturalWidth
-            canvas.height = uploadedImage.naturalheight
+            canvas.height = uploadedImage.naturalHeight
 
             const filters = `brightness(${brightness}%) saturate(${saturation}%) contrast(${contrast}%)`
             context.filter = filters
@@ -176,28 +192,42 @@ imageInput.addEventListener('change', function(event){
             context.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height)
         
             console.log("Image drawn successfully")
+
+            saveImage()
     }
 
-    const saveBtn = document.getElementById('save-btn')
+    function saveImage(){
+        const tempCanvas = document.createElement('canvas')
+        const tempContext = tempCanvas.getContext('2d')
 
-    saveBtn.addEventListener('click', function(){
+        tempCanvas.width = uploadedImage.naturalWidth
+        tempCanvas.height = uploadedImage.naturalHeight 
 
-        drawImageToCanvasWithFilters()
+        let filters = `brightness(${brightness}%) saturate(${saturation}%) contrast(${contrast}%)`
 
-        const imageDataURL = canvas.toDataURL('image/png')
-        console.log("Canvas data URL:", imageDataURL)
-
-        if(imageDataURL === "data:,"){
-            console.error("Canvas is empty. Ensure the image is drawn before saving")
-            alert("Failed to save. please try again")
-            return
+        if(uploadedImage.style.filter.includes('grayscale')){
+            filters += 'grayscale(100%)'
         }
         
-        const link = document.createElement('a')
-        link.href = imageDataURL
-        link.download = 'edited-image.png'
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
+        if (uploadedImage.style.filter.includes('sepia')) {
+            filters += ' sepia(100%)';
+        }
 
+        tempContext.filter = filters
+
+        tempContext.drawImage(uploadedImage, 0, 0, tempCanvas.width, tempCanvas.height)
+
+        //Adding delay before saving the image
+        setTimeout(() =>{
+            const link = document.createElement('a')
+            link.download = 'edited-image.png'
+            link.href = tempCanvas.toDataURL('image/png')
+            link.click()
+        }, 100)
+
+    }
+
+    document.getElementById('save-btn').addEventListener('click', function(){
+        drawImageToCanvasWithFilters()
     })
+
