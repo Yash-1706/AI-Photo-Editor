@@ -97,7 +97,7 @@ imageInput.addEventListener('change', function(event){
     removeBgBtn.addEventListener('click', function(){
         const file = imageInput.files[0]
 
-        const apiKey = 'YOUR_REMOVE_BG_API_KEY';        // CHANGED: Replace with your actual API key
+        const apiKey = 'Your API Key';        // CHANGE: Replace with your actual API key
         const formData = new FormData();
         formData.append('image_file', file);
         formData.append('size', 'auto');
@@ -144,6 +144,20 @@ imageInput.addEventListener('change', function(event){
         uploadedImage.style.filter = 'sepia(100%)'
     })
 
+    //Blur Button
+    const blurBtn = document.getElementById('blur-btn')
+
+    blurBtn.addEventListener('click', function(){
+        uploadedImage.style.filter = 'blur(5px)'
+    })
+
+    //Invert Button
+    const invertBtn = document.getElementById('invert-btn')
+
+    invertBtn.addEventListener('click', function(){
+        uploadedImage.style.filter = 'invert(100%)'
+    })
+
     //Reset Button
     const resetBtn = document.getElementById('reset-btn')
 
@@ -161,11 +175,13 @@ imageInput.addEventListener('change', function(event){
         saturation = 100
         saturationSlider.value = 100
         updateImageFilter()
+        saturationValue.textContent = '100%'
 
         //Contrast
         contrast = 100
         contrastSlider.value = 100
         updateImageFilter()
+        contrastValue.textContent = '100%'
     })
 
 
@@ -213,6 +229,14 @@ imageInput.addEventListener('change', function(event){
             filters += ' sepia(100%)';
         }
 
+        if (uploadedImage.style.filter.includes('blur')) {
+            filters += ' blur(5px)';
+        }
+
+        if (uploadedImage.style.filter.includes('invert')) {
+            filters += 'invert(100%)'
+        }
+
         tempContext.filter = filters
 
         tempContext.drawImage(uploadedImage, 0, 0, tempCanvas.width, tempCanvas.height)
@@ -230,4 +254,3 @@ imageInput.addEventListener('change', function(event){
     document.getElementById('save-btn').addEventListener('click', function(){
         drawImageToCanvasWithFilters()
     })
-
