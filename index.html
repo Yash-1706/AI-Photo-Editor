@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Photo Editor</title>
-    <link rel = "stylesheet" href = "style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+    <button id="theme-toggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
     
     <h1>AI Photo Editor</h1>
 
-    <div id="editor-container">
-            <p>Upload Image : <input type = "file" id = "imageInput" accept = "image/*" ></p>
+    <div class="content-wrapper">
+        <div class="left-section">
+            <p><strong>Upload Image</strong>:
+                <input type="file" id="imageInput" accept="image/*" aria-label="Upload an Image">
+            </p>
             <div class="image-container">
                 <img id="imagePreview" src="" alt="">
-            </div>            
-
-        <canvas id="canvas"></canvas>
-
-        <div class="slider-container">
-            <label for="brightness-slider">Brightness</label>
-            <input type="range" id="brightness-slider" min="0" max="200" value="100">
-            <span id="brightness-value">100%</span>
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
 
-        <div class="slider-container">
-            <label for="saturation-slider">Saturation</label>
-            <input type="range" id="saturation-slider" min="0" max="200" value="100">
-            <span id="saturation-value">100%</span>
-        </div>
+        <div class="right-section">
+            <div class="controls-wrapper">
+                <div class="slider-container">
+                    <label for="brightness-slider">Brightness</label>
+                    <input type="range" id="brightness-slider" min="0" max="200" value="100"
+                        aria-label="Adjust Brightness">
+                    <span id="brightness-value">100%</span>
+                </div>
 
-        <div class="slider-container">
-            <label for="contrast-slider">Contrast</label>
-            <input type="range" id="contrast-slider" min="0" max="200" value="100">
-            <span id="contrast-value">100%</span>
-        </div>
+                <div class="slider-container">
+                    <label for="saturation-slider">Saturation</label>
+                    <input type="range" id="saturation-slider" min="0" max="200" value="100"
+                        aria-label="Adjust Saturation">
+                    <span id="saturation-value">100%</span>
+                </div>
 
-        <div class="button-container">
-            <button id="remove-bg-btn">Remove Background</button>
-            <button id="grayscale-btn">Grayscale</button>
-            <button id="sepia-btn">Sepia</button>
-            <button id="blur-btn">Blur</button>
-            <button id="invert-btn">Invert</button>
-            <button id="reset-btn">Reset</button>
-            <button id="save-btn">Save</button>
-        </div>
+                <div class="slider-container">
+                    <label for="contrast-slider">Contrast</label>
+                    <input type="range" id="contrast-slider" min="0" max="200" value="100" aria-label="Adjust Contrast">
+                    <span id="contrast-value">100%</span>
+                </div>
 
+                <div class="button-container">
+                    <button id="remove-bg-btn">Remove Background</button>
+                    <button id="grayscale-btn">Grayscale</button>
+                    <button id="sepia-btn">Sepia</button>
+                    <button id="blur-btn">Blur</button>
+                    <button id="invert-btn">Invert</button>
+                    <button id="opacity-btn">Opacity</button>
+                    <button id="reset-btn">Reset</button>
+                    <button id="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
-        
-        
-    <script src = "script.js"></script>
+
+
+
+    <script src="script.js"></script>
 </body>
+
 </html>

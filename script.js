@@ -1,4 +1,5 @@
 console.log("Hello")
+// document.body.style.overflow = 'hidden';
 
 //Upload and Display Image
 
@@ -158,6 +159,13 @@ imageInput.addEventListener('change', function(event){
         uploadedImage.style.filter = 'invert(100%)'
     })
 
+    //Opacity Button
+    const opacityBtn = document.getElementById('opacity-btn')
+
+    opacityBtn.addEventListener('click', function(){
+        uploadedImage.style.filter = 'opacity(50%)'
+    })
+
     //Reset Button
     const resetBtn = document.getElementById('reset-btn')
 
@@ -237,6 +245,10 @@ imageInput.addEventListener('change', function(event){
             filters += 'invert(100%)'
         }
 
+        if (uploadedImage.style.filter.includes('opacity')) {
+            filters += 'opacity(50%)'
+        }
+
         tempContext.filter = filters
 
         tempContext.drawImage(uploadedImage, 0, 0, tempCanvas.width, tempCanvas.height)
@@ -254,3 +266,25 @@ imageInput.addEventListener('change', function(event){
     document.getElementById('save-btn').addEventListener('click', function(){
         drawImageToCanvasWithFilters()
     })
+    
+
+    //Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const icon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.dataset.theme = savedTheme;
+    updateIcon(savedTheme);
+    
+    themeToggle.addEventListener('click', () => {
+        const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+        html.dataset.theme = newTheme;
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+    });
+    
+    function updateIcon(theme) {
+        icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
