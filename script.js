@@ -1,5 +1,5 @@
 console.log("Hello")
-// document.body.style.overflow = 'hidden';
+// document.body.style.overflow = 'hidden';  // Disable scrolling  //if auto is used then it will be enabled
 
 //Upload and Display Image
 
