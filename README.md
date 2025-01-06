@@ -47,7 +47,7 @@ AI Photo Editor is a powerful and user-friendly web application that allows user
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/ai-photo-editor.git
+   git clone https://github.com/yash-1706/ai-photo-editor.git
    cd ai-photo-editor
    ```
 
