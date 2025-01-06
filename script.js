@@ -98,7 +98,7 @@ imageInput.addEventListener('change', function(event){
     removeBgBtn.addEventListener('click', function(){
         const file = imageInput.files[0]
 
-        const apiKey = 'Your API Key';        // CHANGE: Replace with your actual API key
+        const apiKey = 'SH8v1n9GFPLpMQ6HQx2gZpfq';        // CHANGE: Replace with your remove.bg API key
         const formData = new FormData();
         formData.append('image_file', file);
         formData.append('size', 'auto');
