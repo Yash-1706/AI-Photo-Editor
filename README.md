@@ -115,8 +115,5 @@ Light Mode
 Yash Gaikwad
 https://github.com/Yash-1706
 
-A special thanks to Sauhard Gupta for helping !!
-https://github.com/Sauhard74
-
 Feel free to fork the repository and contribute to the project!
 
